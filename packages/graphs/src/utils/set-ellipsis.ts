@@ -1,5 +1,5 @@
 /** 超出省略，不够精准 */
-export const setEllipsis = (text: string, fontStyle: { [key: string]: unknown }, contentWidth: number = 120) => {
+export const setEllipsis = (text: string, fontStyle: { [key: string]: unknown }, contentWidth: number = 120) => {  
   const { fontSize = 12, fontWeight = 'normal', fontFamily = 'Arial, sans-serif' } = fontStyle;
   const canvas = document.querySelector('canvas');
   const ctx = canvas.getContext('2d');
@@ -7,6 +7,9 @@ export const setEllipsis = (text: string, fontStyle: { [key: string]: unknown },
   let currentText = text;
   let flag = false;
   ctx.fillText(currentText, 0, 0);
+  if(text.length === 1) {
+    return text;
+  }
   for (let i = text.length - 1; i > 0; i--) {
     const { width } = ctx.measureText(currentText);
     if (width <= contentWidth) {
